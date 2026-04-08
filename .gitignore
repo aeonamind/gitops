@@ -1,1 +1,30 @@
+# Helm — vendored dependencies (helm dependency build / update)
 infra/monitoring/charts/
+charts/*.tgz
+
+# Local env and secrets (never commit)
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor / backup files
+*~
+*.swp
+*.swo
+
+# Terraform (if used in-repo)
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Misc
+*.log
