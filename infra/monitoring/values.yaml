@@ -1,0 +1,16 @@
+kube-prometheus-stack:
+  grafana:
+    enabled: true
+    adminPassword: "changeme"   # use a Secret/SealedSecret in prod
+    ingress:
+      enabled: false            # enable + configure if you have an ingress controller
+    persistence:
+      enabled: false            # flip to true + set storageClass for prod
+
+  prometheus:
+    prometheusSpec:
+      retention: 15d
+      storageSpec: {}           # add PVC config for prod
+
+  alertmanager:
+    enabled: false              # enable when you're ready to configure alerts
