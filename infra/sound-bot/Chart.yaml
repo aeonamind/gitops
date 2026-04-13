@@ -1,0 +1,6 @@
+apiVersion: v2
+name: sound-bot
+description: Discord sound bot (NestJS)
+type: application
+version: 0.1.0
+appVersion: "0.0.1"

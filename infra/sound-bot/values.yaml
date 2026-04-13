@@ -1,0 +1,23 @@
+# Optional: set to override generated resource names (default is release name).
+# fullnameOverride: ""
+
+# Image built by CI (see sound-bot repo). Pin a tag in prod instead of :latest.
+image:
+  repository: aeonamind/sound-bot
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicas: 1
+
+service:
+  type: ClusterIP
+  port: 3000
+
+# Create once on the cluster (do not commit real values):
+# kubectl create secret generic sound-bot-secrets \
+#   --from-literal=BOT_TOKEN=... \
+#   --from-literal=CLIENT_ID=... \
+#   -n application
+existingSecret: sound-bot-secrets
+
+resources: {}
