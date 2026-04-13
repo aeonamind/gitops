@@ -13,11 +13,14 @@ service:
   type: ClusterIP
   port: 3000
 
-# Create once on the cluster (do not commit real values):
-# kubectl create secret generic sound-bot-secrets \
-#   --from-literal=BOT_TOKEN=... \
-#   --from-literal=CLIENT_ID=... \
-#   -n application
-existingSecret: sound-bot-secrets
+# Vault Sidecar Injection configuration.
+# Prerequisites: apps/vault; then:
+# 1) Init/unseal Vault, enable KV v2:  vault secrets enable -path=secret kv-v2
+# 2) Store:  vault kv put secret/data/sound-bot BOT_TOKEN=... CLIENT_ID=...
+# 3) Configure K8s Auth and Role in Vault (see instructions provided).
+vault:
+  enabled: true
+  role: sound-bot-role
+  remotePath: secret/data/sound-bot
 
 resources: {}
