@@ -6,6 +6,8 @@ image:
   repository: aeonamind/sound-bot
   tag: latest
   pullPolicy: IfNotPresent
+  pullSecrets:
+    - name: dockerhub-secret
 
 replicas: 1
 
@@ -22,5 +24,6 @@ vault:
   enabled: true
   role: sound-bot-role
   remotePath: secret/data/sound-bot
+  dockerConfigPath: secret/data/dockerhub
 
 resources: {}
