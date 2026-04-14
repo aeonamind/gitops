@@ -4,8 +4,19 @@ kube-prometheus-stack:
     adminPassword: "changeme"   # use a Secret/SealedSecret in prod
     ingress:
       enabled: false            # enable + configure if you have an ingress controller
+    # UI-created dashboards live in Grafana's DB on disk; without a PVC they are lost on pod reschedules.
     persistence:
-      enabled: false            # flip to true + set storageClass for prod
+      enabled: true
+      type: pvc
+      size: 10Gi
+      # storageClassName: ""    # set to your cluster default or a named class if PVC stays Pending
+
+    # Optional: load dashboards from ConfigMaps (survives restarts even without PVC; good for GitOps).
+    # sidecar:
+    #   dashboards:
+    #     enabled: true
+    #     label: grafana_dashboard
+    #     folder: /tmp/dashboards
 
   prometheus:
     prometheusSpec:
