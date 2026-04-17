@@ -12,7 +12,7 @@ replicas: 1
 service:
   type: ClusterIP
   port: 3000
-# Vault Sidecar Injection configuration.
+# Vault External Secrets configuration.
 # Prerequisites: apps/vault; then:
 # 1) Init/unseal Vault, enable KV v2:  vault secrets enable -path=secret kv-v2
 # 2) Store:  vault kv put secret/data/sound-bot BOT_TOKEN=... CLIENT_ID=...
