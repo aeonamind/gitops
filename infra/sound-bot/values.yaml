@@ -12,6 +12,15 @@ replicas: 1
 service:
   type: ClusterIP
   port: 3000
+ingress:
+  enabled: true
+  className: traefik
+  host: ""   # empty = match any host (test via http://<traefik-ip>/); set a domain when DNS is ready
+  annotations: {}
+  # tls:
+  #   - secretName: sound-bot-tls
+  #     hosts:
+  #       - sound-bot.example.com
 # Vault External Secrets configuration.
 # Prerequisites: apps/vault; then:
 # 1) Init/unseal Vault, enable KV v2:  vault secrets enable -path=secret kv-v2
