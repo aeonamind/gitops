@@ -25,9 +25,17 @@ spec:
           ports:
             - name: http
               containerPort: 3000
+          env:
+            - name: YT_DLP_COOKIES_FILE
+              value: /secrets/youtube-cookies.txt
           envFrom:
             - secretRef:
                 name: {{ include "sound-bot.fullname" . }}-app-secrets
+          volumeMounts:
+            - name: youtube-cookies
+              mountPath: /secrets/youtube-cookies.txt
+              subPath: youtube-cookies.txt
+              readOnly: true
           livenessProbe:
             tcpSocket:
               port: http
@@ -42,3 +50,8 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      volumes:
+        - name: youtube-cookies
+          secret:
+            secretName: {{ include "sound-bot.fullname" . }}-youtube-cookies
+            defaultMode: 0444
