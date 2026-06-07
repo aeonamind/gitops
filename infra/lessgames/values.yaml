@@ -1,7 +1,7 @@
 # Image built by CI (see lessgames repo). Pin a tag in prod instead of :latest.
 image:
   repository: aeonamind/lessgames
-  tag: 7409488f49d6e6e95e54c7138d4bb523a3b0de2a
+  tag: 32aa33ac99f5308be03de54fde3fd80b1fd30907
   pullPolicy: IfNotPresent
   # Uses the namespace-wide dockerhub-secret for image pulls.
   pullSecrets:
