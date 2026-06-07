@@ -1,18 +1,15 @@
 # Image built by CI (see lessgames repo). Pin a tag in prod instead of :latest.
 image:
   repository: aeonamind/lessgames
-  tag: latest
+  tag: 7409488f49d6e6e95e54c7138d4bb523a3b0de2a
   pullPolicy: IfNotPresent
   # Uses the namespace-wide dockerhub-secret for image pulls.
   pullSecrets:
     - name: dockerhub-secret
-
 replicas: 1
-
 service:
   type: ClusterIP
   port: 3000
-
 ingress:
   enabled: true
   className: traefik
@@ -22,5 +19,4 @@ ingress:
   #   - secretName: lessgames-tls
   #     hosts:
   #       - lessgames.eugenebox.uk
-
 resources: {}
