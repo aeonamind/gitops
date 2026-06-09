@@ -8,21 +8,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://argoproj.github.io/argo-helm
-    chart: argo-cd
-    targetRevision: 7.1.0
+    repoURL: https://github.com/aeonamind/gitops.git
+    targetRevision: HEAD
+    path: infra/argocd
     helm:
-      values: |
-        server:
-          extraArgs:
-            - --insecure
-          ingress:
-            enabled: true
-            ingressClassName: traefik
-            hosts:
-              - argocd.eugenebox.uk
-            annotations:
-              traefik.ingress.kubernetes.io/router.entrypoints: web
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
