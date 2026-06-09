@@ -17,3 +17,25 @@ argo-cd:
         - argocd.eugenebox.uk
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: web
+
+  repoServer:
+    # Fix for the copyutil init container error
+    # The default command/args in some chart versions can be misinterpreted.
+    initContainers:
+      - name: copyutil
+        image: quay.io/argoproj/argocd:v2.11.2
+        command: ["/bin/sh", "-c"]
+        args:
+          - "cp /usr/local/bin/argocd /var/run/argocd/argocd && ln -sf /var/run/argocd/argocd /var/run/argocd/argocd-cmp-server"
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
