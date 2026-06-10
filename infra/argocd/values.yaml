@@ -4,7 +4,7 @@ argo-cd:
 
   configs:
     cm:
-      url: http://argocd.eugenebox.uk
+      url: https://argocd.eugenebox.uk
       admin.enabled: "true"
     params:
       server.insecure: true
@@ -17,3 +17,5 @@ argo-cd:
         - argocd.eugenebox.uk
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: web
+    extraArgs:
+      - --insecure
