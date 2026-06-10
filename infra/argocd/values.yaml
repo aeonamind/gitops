@@ -21,7 +21,8 @@
 #
 # 4) Sync this chart, then use "LOG IN VIA GITHUB" on the UI.
 #    CLI: argocd login argocd.eugenebox.uk --sso
-#    RBAC uses GitHub username (g, aeonamind, role:admin).
+#    RBAC uses GitHub numeric user ID as sub (g, 107750505, role:admin), not the username.
+#    Or use scopes "[email]" and grant by email for teammates.
 #    After SSO works, set admin.enabled to "false" to disable the local admin account.
 sso:
   vault:
@@ -67,7 +68,7 @@ argo-cd:
         p, role:readonly, repositories, get, *, allow
         p, role:readonly, projects, get, *, allow
         p, role:readonly, logs, get, */*, allow
-        g, aeonamind, role:admin
+        g, 107750505, role:admin
 
   server:
     ingress:
