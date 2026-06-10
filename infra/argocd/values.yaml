@@ -1,3 +1,44 @@
+# SSO via Dex (GitHub). OAuth redirect URI:
+#   https://argocd.eugenebox.uk/api/dex/callback
+#
+# 1) Create a GitHub OAuth App: Settings → Developer settings → OAuth Apps
+#      Homepage URL: https://argocd.eugenebox.uk
+#      Authorization callback URL: https://argocd.eugenebox.uk/api/dex/callback
+#
+# 2) Store credentials in Vault:
+#      vault kv put secret/argocd \
+#        dex.github.clientID=... \
+#        dex.github.clientSecret=...
+#
+# 3) Vault policy + Kubernetes auth role for the vault SA (see templates/serviceaccount.yaml):
+#      vault policy write argocd-policy - <<EOF
+#      path "secret/data/argocd" { capabilities = ["read"] }
+#      EOF
+#      vault write auth/kubernetes/role/argocd-role \
+#        bound_service_account_names=argocd-argocd-infra-vault \
+#        bound_service_account_namespaces=argocd \
+#        policies=argocd-policy ttl=1h
+#
+# 4) Sync this chart, then use "LOG IN VIA GITHUB" on the UI.
+#    CLI: argocd login argocd.eugenebox.uk --sso
+#    RBAC uses GitHub username (g, aeonamind, role:admin) or org team (g, aeonamind:team, role:admin).
+#    After SSO works, set admin.enabled to "false" to disable the local admin account.
+sso:
+  vault:
+    enabled: true
+    server: http://vault.vault.svc.cluster.local:8200
+    role: argocd-role
+    remotePath: secret/data/argocd
+    secretKeys:
+      - dex.github.clientID
+      - dex.github.clientSecret
+  github:
+    orgs:
+      - aeonamind
+  rbac:
+    admins:
+      - aeonamind
+
 argo-cd:
   global:
     domain: argocd.eugenebox.uk
@@ -6,8 +47,36 @@ argo-cd:
     cm:
       url: https://argocd.eugenebox.uk
       admin.enabled: "true"
+      dex.config: |
+        connectors:
+          - type: github
+            id: github
+            name: GitHub
+            config:
+              clientID: $dex.github.clientID
+              clientSecret: $dex.github.clientSecret
+              orgs:
+                - name: aeonamind
     params:
       server.insecure: true
+    rbac:
+      scopes: "[groups]"
+      policy.csv: |
+        p, role:admin, applications, *, */*, allow
+        p, role:admin, clusters, *, *, allow
+        p, role:admin, repositories, *, *, allow
+        p, role:admin, logs, get, *, allow
+        p, role:admin, exec, create, */*, allow
+        p, role:admin, certificates, *, *, allow
+        p, role:admin, accounts, *, *, allow
+        p, role:admin, gpgkeys, *, *, allow
+        p, role:readonly, applications, get, */*, allow
+        p, role:readonly, certificates, get, *, allow
+        p, role:readonly, clusters, get, *, allow
+        p, role:readonly, repositories, get, *, allow
+        p, role:readonly, projects, get, *, allow
+        p, role:readonly, logs, get, */*, allow
+        g, aeonamind, role:admin
 
   server:
     ingress:
