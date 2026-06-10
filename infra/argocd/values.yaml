@@ -21,7 +21,7 @@
 #
 # 4) Sync this chart, then use "LOG IN VIA GITHUB" on the UI.
 #    CLI: argocd login argocd.eugenebox.uk --sso
-#    RBAC uses GitHub username (g, aeonamind, role:admin) or org team (g, aeonamind:team, role:admin).
+#    RBAC uses GitHub username (g, aeonamind, role:admin).
 #    After SSO works, set admin.enabled to "false" to disable the local admin account.
 sso:
   vault:
@@ -32,13 +32,6 @@ sso:
     secretKeys:
       - dex.github.clientID
       - dex.github.clientSecret
-  github:
-    orgs:
-      - aeonamind
-  rbac:
-    admins:
-      - aeonamind
-
 argo-cd:
   global:
     domain: argocd.eugenebox.uk
@@ -55,8 +48,6 @@ argo-cd:
             config:
               clientID: $dex.github.clientID
               clientSecret: $dex.github.clientSecret
-              orgs:
-                - name: aeonamind
     params:
       server.insecure: true
     rbac:
