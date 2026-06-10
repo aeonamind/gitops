@@ -16,7 +16,6 @@ argo-cd:
       hosts:
         - argocd.eugenebox.uk
       annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: web
         kubernetes.io/ingress.class: traefik
       tls: []
     extraArgs:
