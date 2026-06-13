@@ -4,7 +4,7 @@
 # Image built by CI (see sound-bot repo). Pin a tag in prod instead of :latest.
 image:
   repository: aeonamind/sound-bot
-  tag: 4bd1c65e8946d2e597149d6e0d08550bb036b0e7
+  tag: 84e79b0af10529e0497fdcd9527df1aa5ea46e10
   pullPolicy: IfNotPresent
   pullSecrets:
     - name: dockerhub-secret
