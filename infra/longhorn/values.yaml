@@ -1,0 +1,19 @@
+# Distributed block storage. Deploys to longhorn-system (required by upstream chart).
+# UI: https://longhorn.eugenebox.uk (after DNS points at the cluster ingress).
+longhorn:
+  persistence:
+    defaultClass: true
+    defaultClassReplicaCount: 2
+    reclaimPolicy: Delete
+
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    host: longhorn.eugenebox.uk
+    annotations:
+      kubernetes.io/ingress.class: traefik
+    tls: false
+
+  defaultSettings:
+    defaultReplicaCount: "2"
+    storageMinimalAvailablePercentage: "10"

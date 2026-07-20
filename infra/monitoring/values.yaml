@@ -9,7 +9,7 @@ kube-prometheus-stack:
       enabled: true
       type: pvc
       size: 10Gi
-      # storageClassName: ""    # set to your cluster default or a named class if PVC stays Pending
+      storageClassName: longhorn
 
     # Optional: load dashboards from ConfigMaps (survives restarts even without PVC; good for GitOps).
     # sidecar:

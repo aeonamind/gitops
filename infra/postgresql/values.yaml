@@ -1,0 +1,52 @@
+# PostgreSQL (standalone). Connect from apps via:
+#   postgresql.postgresql.svc.cluster.local:5432
+#
+# Prerequisites: apps/vault and apps/longhorn; then:
+# 1) Init/unseal Vault, enable KV v2:  vault secrets enable -path=secret kv-v2
+# 2) Store credentials:
+#      vault kv put secret/postgresql \
+#        postgres-password='...' \
+#        password='...'
+# 3) Vault policy + Kubernetes auth role:
+#      vault policy write postgresql-policy - <<EOF
+#      path "secret/data/postgresql" { capabilities = ["read"] }
+#      EOF
+#      vault write auth/kubernetes/role/postgresql-role \
+#        bound_service_account_names=postgresql \
+#        bound_service_account_namespaces=postgresql \
+#        policies=postgresql-policy ttl=1h
+vault:
+  enabled: true
+  role: postgresql-role
+  remotePath: secret/data/postgresql
+  secretName: postgresql-credentials
+  secretKeys:
+    - postgres-password
+    - password
+
+postgresql:
+  auth:
+    enablePostgresUser: true
+    username: app
+    database: app
+    existingSecret: postgresql-credentials
+    secretKeys:
+      adminPasswordKey: postgres-password
+      userPasswordKey: password
+
+  architecture: standalone
+
+  primary:
+    persistence:
+      enabled: true
+      storageClass: longhorn
+      size: 10Gi
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        memory: 512Mi
+
+  metrics:
+    enabled: false

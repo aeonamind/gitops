@@ -1,5 +1,7 @@
 # Helm — vendored dependencies (helm dependency build / update)
 infra/monitoring/charts/
+infra/longhorn/charts/
+infra/postgresql/charts/
 charts/*.tgz
 
 # Local env and secrets (never commit)
