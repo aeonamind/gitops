@@ -1,6 +1,12 @@
 # Distributed block storage. Deploys to longhorn-system (required by upstream chart).
 # UI: https://longhorn.eugenebox.uk (after DNS points at the cluster ingress).
+#
+# preUpgradeChecker must be disabled for ArgoCD — the Helm pre-upgrade hook runs as a
+# PreSync hook before ServiceAccounts exist, leaving the sync stuck (see longhorn#6415).
 longhorn:
+  preUpgradeChecker:
+    jobEnabled: false
+
   persistence:
     defaultClass: true
     defaultClassReplicaCount: 2
