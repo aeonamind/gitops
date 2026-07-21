@@ -7,4 +7,5 @@ appVersion: "18.4.0"
 dependencies:
   - name: postgresql
     version: "18.8.0"
-    repository: https://charts.bitnami.com/bitnami
+    # Bitnami classic Helm index redirects to OCI; use OCI directly for ArgoCD pulls.
+    repository: oci://registry-1.docker.io/bitnamicharts
