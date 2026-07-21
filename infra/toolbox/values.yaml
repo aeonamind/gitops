@@ -1,0 +1,43 @@
+# Persistent debug pod for in-cluster testing.
+#
+# Usage:
+#   kubectl exec -it -n tools deploy/toolbox -- bash
+#
+# Vault (login with root token or other token first):
+#   vault status
+#   vault login <token>
+#   vault kv get secret/postgresql
+#
+# PostgreSQL (get password from Vault or your machine):
+#   export PGPASSWORD=$(vault kv get -field=password secret/postgresql)
+#   psql -c "SELECT version();"
+#
+# Or pass password from your machine without storing it in the pod:
+#   PGPASSWORD=$(kubectl get secret postgresql-credentials -n postgresql \
+#     -o jsonpath='{.data.password}' | base64 -d) \
+#   kubectl exec -it -n tools deploy/toolbox -- env PGPASSWORD="$PGPASSWORD" \
+#     psql -c "SELECT 1;"
+
+replicas: 1
+
+image:
+  repository: alpine
+  tag: "3.21"
+  pullPolicy: IfNotPresent
+
+vault:
+  addr: http://vault.vault.svc.cluster.local:8200
+  cliVersion: "1.16.1"
+
+postgresql:
+  host: postgresql.postgresql.svc.cluster.local
+  port: "5432"
+  database: app
+  user: app
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 64Mi
+  limits:
+    memory: 256Mi

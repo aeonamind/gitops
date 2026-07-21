@@ -1,0 +1,28 @@
+# Debug pod with psql, vault CLI, curl, and jq for in-cluster testing.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: toolbox
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/aeonamind/gitops.git
+    targetRevision: HEAD
+    path: infra/toolbox
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: tools
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

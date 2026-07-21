@@ -1,0 +1,6 @@
+apiVersion: v2
+name: toolbox
+description: Debug pod with psql, vault CLI, and common networking tools
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
