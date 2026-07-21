@@ -40,6 +40,7 @@ argo-cd:
     cm:
       url: https://argocd.eugenebox.uk
       admin.enabled: "true"
+      exec.enabled: "true"
       dex.config: |
         connectors:
           - type: github
