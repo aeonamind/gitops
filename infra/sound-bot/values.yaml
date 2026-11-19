@@ -41,5 +41,10 @@ vault:
     - SPOTIFY_CLIENT_ID
     - SPOTIFY_CLIENT_SECRET
     - BOT_ENABLED
+    # LoL "Vua Gà": patch these into Vault BEFORE merging, or the ExternalSecret fails to sync.
+    #   vault kv patch secret/sound-bot RIOT_API_KEY=... \
+    #     DATABASE_URL=postgres://soundbot:<pw>@postgresql.postgresql.svc.cluster.local:5432/soundbot
+    - RIOT_API_KEY
+    - DATABASE_URL
   youtubeCookiesKey: YOUTUBE_COOKIES
 resources: {}
