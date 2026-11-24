@@ -1,7 +1,7 @@
 # Image built by CI (see hpbd repo). Pin a tag in prod instead of :latest.
 image:
   repository: aeonamind/hpbd
-  tag: dd80552d0ef78421baae0f970f321d5d371671d1
+  tag: 7ddc7e0b5d48026221d9281bc660c2a9a57968ca
   pullPolicy: IfNotPresent
   # Uses the namespace-wide dockerhub-secret (created by the sound-bot app) for image pulls.
   pullSecrets:
