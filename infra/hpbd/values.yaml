@@ -32,49 +32,56 @@ resources:
 # ---------------------------------------------------------------------------
 config:
   herName: "Minh Thư"
-  fromName: "Tớ"
+  fromName: "Anh"
   age: 17
-  pageTitle: "Gửi cậu \U0001F48C"
+  pageTitle: "Sinh nhật vui vẻ, {name} 🎂"
   # Lock the page until this moment (ISO 8601 with offset), e.g. "2026-11-20T00:00:00+07:00". Preview with ?preview
   unlockAt: ""
   # Custom music file baked into the image under public/, e.g. "music.mp3"
   music: ""
   intro:
-    - "{age} năm trước, vào một ngày như hôm nay..."
-    - "thế giới có thêm một cô gái nhỏ."
-    - "Rồi không biết từ lúc nào, cô gái ấy bước vào thế giới của tớ..."
-    - "và mọi thứ bỗng dễ thương hơn một chút."
-    - "Hôm nay, cô gái ấy tròn {age} tuổi."
-    - "Nên tớ đã chuẩn bị một chút gì đó... chỉ dành riêng cho cậu. ♡"
-  letter: "Gửi {name},\n\nChúc mừng sinh nhật cậu — tuổi {age}, cái tuổi mà người ta hay bảo là đẹp nhất của thanh xuân.\n\nTớ không giỏi nói những lời như thế này trực tiếp, nên tớ đã làm hẳn một trang web chỉ để nói với cậu. Hơi ngốc nhỉ? Nhưng tớ muốn hôm nay cậu nhận được một điều gì đó thật riêng, thật khác, và chỉ dành cho mỗi cậu thôi.\n\nCảm ơn cậu vì đã xuất hiện. Vì những lần cậu cười làm cả ngày của tớ sáng lên, vì những câu chuyện vu vơ mà tớ cứ nhớ mãi, và vì cậu cứ là chính cậu — dịu dàng, mạnh mẽ và đáng yêu theo cách chẳng ai giống được.\n\nTuổi {age} chắc sẽ có nhiều áp lực: bài vở, thi cử, những dự định cho tương lai. Nhưng tớ mong cậu nhớ rằng cậu không cần phải hoàn hảo. Cứ từ từ thôi, mệt thì nghỉ, buồn thì cứ khóc, rồi lại cười thật tươi nhé. Và nếu lúc nào cần một người lắng nghe, tớ luôn ở đây.\n\nChúc cậu tuổi mới thật nhiều niềm vui, thật khỏe mạnh, đạt được những điều cậu mong muốn, và luôn được yêu thương thật nhiều.\n\nSinh nhật vui vẻ nhé, cô gái tuổi {age}. \U0001F382\n"
-  wishesTitle: "{age} điều tớ chúc cậu"
+    - "Hôm nay là một ngày đặc biệt..."
+    - "vì đúng {age} năm trước, {name} ra đời."
+    - "Chúc mừng em đã chính thức bước sang tuổi {age}!"
+    - "Anh có chuẩn bị một món quà nho nhỏ cho em đây. 🎁"
+  letter: |
+    Gửi {name},
+
+    Chúc mừng sinh nhật em! {age} tuổi rồi đấy, lớn thật rồi.
+
+    Năm nay chắc em sẽ bận hơn nhiều: học hành, thi cử, rồi bắt đầu nghĩ đến chuyện sau này. Cứ cố gắng hết sức, nhưng cũng nhớ nghỉ ngơi đúng lúc, đừng ép mình quá.
+
+    Anh chúc em tuổi mới thật khỏe mạnh, học tốt, có nhiều bạn bè vui vẻ và luôn giữ được sự vui tươi của mình. Gặp chuyện gì khó thì cứ bình tĩnh, rồi mọi chuyện cũng sẽ ổn thôi.
+
+    Sinh nhật vui vẻ nhé, {name}! 🎂
+  wishesTitle: "{age} điều anh chúc em"
   wishes:
-    - "Chúc cậu luôn cười thật nhiều — vì nụ cười của cậu đẹp lắm."
-    - "Chúc cậu ngủ đủ giấc, bớt thức khuya làm bài đi nhé."
-    - "Chúc cậu điểm cao mà không phải học đến kiệt sức."
-    - "Chúc cậu luôn khỏe mạnh, chẳng ốm vặt gì cả."
-    - "Chúc món gì cậu thèm cũng có người mua cho. (Có thể là tớ \U0001F60C)"
-    - "Chúc cậu tìm thấy điều mà cậu thật sự yêu thích."
-    - "Chúc cậu luôn có những người bạn tốt ở bên."
-    - "Chúc những ngày buồn của cậu đều thật ngắn."
-    - "Chúc cậu tự tin hơn mỗi ngày — vì cậu xứng đáng mà."
-    - "Chúc cậu luôn được gia đình yêu thương, che chở."
-    - "Chúc cậu thi đâu đỗ đó, ước gì được nấy."
-    - "Chúc cậu có thật nhiều kỷ niệm đẹp ở tuổi {age}."
-    - "Chúc cậu đi thật xa và nhìn thấy thật nhiều điều đẹp đẽ."
-    - "Chúc cậu luôn dịu dàng với chính mình."
-    - "Chúc cậu đừng bao giờ đánh mất sự hồn nhiên ấy."
-    - "Chúc cậu luôn biết rằng có một người đang âm thầm cổ vũ cậu."
-    - "Và điều cuối cùng... chúc cho tớ được ở bên cạnh cậu thêm thật nhiều mùa sinh nhật nữa. \U0001F497"
+    - "Chúc em tuổi {age} thật nhiều niềm vui."
+    - "Chúc em luôn khỏe mạnh, ít ốm vặt."
+    - "Chúc em học tốt, thi đâu đỗ đó."
+    - "Chúc em ngủ đủ giấc, bớt thức khuya."
+    - "Chúc em ăn gì cũng thấy ngon."
+    - "Chúc em có nhiều bạn bè tốt."
+    - "Chúc em tự tin hơn mỗi ngày."
+    - "Chúc em tìm được điều mình thật sự thích làm."
+    - "Chúc em có nhiều chuyến đi chơi vui."
+    - "Chúc gia đình em luôn mạnh khỏe, bình an."
+    - "Chúc em gặp chuyện khó cũng bình tĩnh vượt qua."
+    - "Chúc em điểm cao mà không phải học quá sức."
+    - "Chúc em luôn vui vẻ và lạc quan."
+    - "Chúc em có thật nhiều kỷ niệm đẹp ở tuổi {age}."
+    - "Chúc mọi dự định của em đều suôn sẻ."
+    - "Chúc em luôn là chính mình."
+    - "Và chúc em có một ngày sinh nhật thật vui! 🎉"
   # Photos must be baked into the image under public/photos/
   photos: []
   #  - src: photos/1.jpg
-  #    caption: "Lần đầu đi chơi"
+  #    caption: "Kỷ niệm"
   finalTitle: "Chúc mừng sinh nhật, {name}!"
   finalMessage: |
-    Cảm ơn cậu đã đến với thế giới này {age} năm trước.
-    Mong tuổi {age} của cậu sẽ thật rực rỡ,
-    và nếu được... cho tớ cùng cậu đi qua nhé. ♡
+    Chúc em tuổi {age} thật nhiều niềm vui và may mắn.
+    Sinh nhật vui vẻ nhé! 🎂
+
 # View tracking: the server forwards events to ntfy. The topic is a secret (anyone who
 # knows it can read the notifications), so it lives in Vault, not in this public repo.
 tracking:
