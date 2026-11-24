@@ -25,7 +25,6 @@ resources:
     memory: 32Mi
   limits:
     memory: 128Mi
-
 # ---------------------------------------------------------------------------
 # Page content. Edit here and push: ArgoCD syncs, checksum/config rolls the pod.
 # Placeholders in any text: {name}, {from}, {age}.
@@ -35,7 +34,7 @@ config:
   herName: "Minh Thư"
   fromName: "Tớ"
   age: 17
-  pageTitle: "Gửi cậu 💌"
+  pageTitle: "Gửi cậu \U0001F48C"
   # Lock the page until this moment (ISO 8601 with offset), e.g. "2026-11-20T00:00:00+07:00". Preview with ?preview
   unlockAt: ""
   # Custom music file baked into the image under public/, e.g. "music.mp3"
@@ -47,27 +46,14 @@ config:
     - "và mọi thứ bỗng dễ thương hơn một chút."
     - "Hôm nay, cô gái ấy tròn {age} tuổi."
     - "Nên tớ đã chuẩn bị một chút gì đó... chỉ dành riêng cho cậu. ♡"
-  letter: |
-    Gửi {name},
-
-    Chúc mừng sinh nhật cậu — tuổi {age}, cái tuổi mà người ta hay bảo là đẹp nhất của thanh xuân.
-
-    Tớ không giỏi nói những lời như thế này trực tiếp, nên tớ đã làm hẳn một trang web chỉ để nói với cậu. Hơi ngốc nhỉ? Nhưng tớ muốn hôm nay cậu nhận được một điều gì đó thật riêng, thật khác, và chỉ dành cho mỗi cậu thôi.
-
-    Cảm ơn cậu vì đã xuất hiện. Vì những lần cậu cười làm cả ngày của tớ sáng lên, vì những câu chuyện vu vơ mà tớ cứ nhớ mãi, và vì cậu cứ là chính cậu — dịu dàng, mạnh mẽ và đáng yêu theo cách chẳng ai giống được.
-
-    Tuổi {age} chắc sẽ có nhiều áp lực: bài vở, thi cử, những dự định cho tương lai. Nhưng tớ mong cậu nhớ rằng cậu không cần phải hoàn hảo. Cứ từ từ thôi, mệt thì nghỉ, buồn thì cứ khóc, rồi lại cười thật tươi nhé. Và nếu lúc nào cần một người lắng nghe, tớ luôn ở đây.
-
-    Chúc cậu tuổi mới thật nhiều niềm vui, thật khỏe mạnh, đạt được những điều cậu mong muốn, và luôn được yêu thương thật nhiều.
-
-    Sinh nhật vui vẻ nhé, cô gái tuổi {age}. 🎂
+  letter: "Gửi {name},\n\nChúc mừng sinh nhật cậu — tuổi {age}, cái tuổi mà người ta hay bảo là đẹp nhất của thanh xuân.\n\nTớ không giỏi nói những lời như thế này trực tiếp, nên tớ đã làm hẳn một trang web chỉ để nói với cậu. Hơi ngốc nhỉ? Nhưng tớ muốn hôm nay cậu nhận được một điều gì đó thật riêng, thật khác, và chỉ dành cho mỗi cậu thôi.\n\nCảm ơn cậu vì đã xuất hiện. Vì những lần cậu cười làm cả ngày của tớ sáng lên, vì những câu chuyện vu vơ mà tớ cứ nhớ mãi, và vì cậu cứ là chính cậu — dịu dàng, mạnh mẽ và đáng yêu theo cách chẳng ai giống được.\n\nTuổi {age} chắc sẽ có nhiều áp lực: bài vở, thi cử, những dự định cho tương lai. Nhưng tớ mong cậu nhớ rằng cậu không cần phải hoàn hảo. Cứ từ từ thôi, mệt thì nghỉ, buồn thì cứ khóc, rồi lại cười thật tươi nhé. Và nếu lúc nào cần một người lắng nghe, tớ luôn ở đây.\n\nChúc cậu tuổi mới thật nhiều niềm vui, thật khỏe mạnh, đạt được những điều cậu mong muốn, và luôn được yêu thương thật nhiều.\n\nSinh nhật vui vẻ nhé, cô gái tuổi {age}. \U0001F382\n"
   wishesTitle: "{age} điều tớ chúc cậu"
   wishes:
     - "Chúc cậu luôn cười thật nhiều — vì nụ cười của cậu đẹp lắm."
     - "Chúc cậu ngủ đủ giấc, bớt thức khuya làm bài đi nhé."
     - "Chúc cậu điểm cao mà không phải học đến kiệt sức."
     - "Chúc cậu luôn khỏe mạnh, chẳng ốm vặt gì cả."
-    - "Chúc món gì cậu thèm cũng có người mua cho. (Có thể là tớ 😌)"
+    - "Chúc món gì cậu thèm cũng có người mua cho. (Có thể là tớ \U0001F60C)"
     - "Chúc cậu tìm thấy điều mà cậu thật sự yêu thích."
     - "Chúc cậu luôn có những người bạn tốt ở bên."
     - "Chúc những ngày buồn của cậu đều thật ngắn."
@@ -79,7 +65,7 @@ config:
     - "Chúc cậu luôn dịu dàng với chính mình."
     - "Chúc cậu đừng bao giờ đánh mất sự hồn nhiên ấy."
     - "Chúc cậu luôn biết rằng có một người đang âm thầm cổ vũ cậu."
-    - "Và điều cuối cùng... chúc cho tớ được ở bên cạnh cậu thêm thật nhiều mùa sinh nhật nữa. 💗"
+    - "Và điều cuối cùng... chúc cho tớ được ở bên cạnh cậu thêm thật nhiều mùa sinh nhật nữa. \U0001F497"
   # Photos must be baked into the image under public/photos/
   photos: []
   #  - src: photos/1.jpg
@@ -89,12 +75,10 @@ config:
     Cảm ơn cậu đã đến với thế giới này {age} năm trước.
     Mong tuổi {age} của cậu sẽ thật rực rỡ,
     và nếu được... cho tớ cùng cậu đi qua nhé. ♡
-
 # View tracking: the server forwards events to ntfy. The topic is a secret (anyone who
 # knows it can read the notifications), so it lives in Vault, not in this public repo.
 tracking:
   ntfyUrl: https://ntfy.sh
-
 # Vault External Secrets (same setup as sound-bot). Already provisioned:
 #   secret/hpbd           TRACK_TOPIC=<topic>   (vault kv patch secret/hpbd TRACK_TOPIC=... to change)
 #   policy hpbd-policy    read secret/data/hpbd
