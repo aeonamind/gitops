@@ -13,9 +13,6 @@ spec:
     metadata:
       labels:
         {{- include "hpbd.selectorLabels" . | nindent 8 }}
-      annotations:
-        # Content is read once at startup: roll the pod whenever the page config changes.
-        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
       serviceAccountName: {{ include "hpbd.fullname" . }}
       {{- with .Values.image.pullSecrets }}
@@ -32,15 +29,17 @@ spec:
           ports:
             - name: http
               containerPort: 8080
-          envFrom:
-            - configMapRef:
-                name: {{ include "hpbd.fullname" . }}-config
-            {{- if .Values.vault.enabled }}
-            # optional: page still runs (tracking only logs) if the Vault secret is not ready yet
-            - secretRef:
-                name: {{ include "hpbd.fullname" . }}-secrets
-                optional: true
-            {{- end }}
+          env:
+            # Page content + TRACK_TOPIC come from Vault as files (one per key). The server
+            # re-reads them, so editing Vault updates the page without restarting the pod.
+            - name: CONFIG_DIR
+              value: /config
+            - name: NTFY_URL
+              value: {{ .Values.tracking.ntfyUrl | quote }}
+          volumeMounts:
+            - name: content
+              mountPath: /config
+              readOnly: true
           livenessProbe:
             httpGet:
               path: /healthz
@@ -59,3 +58,7 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      volumes:
+        - name: content
+          secret:
+            secretName: {{ include "hpbd.fullname" . }}-secrets
