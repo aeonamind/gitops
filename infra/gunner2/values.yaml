@@ -1,0 +1,30 @@
+# Image built by CI (see gunner2 repo), tag bumped automatically on push to main.
+image:
+  repository: aeonamind/gunner2
+  tag: 0aec1b05cf269c5f65d9af40b27d4088d99ff8b1
+  pullPolicy: IfNotPresent
+  # Uses the namespace-wide dockerhub-secret for image pulls.
+  pullSecrets:
+    - name: dockerhub-secret
+# Game rooms live in the pod's memory: keep exactly 1 replica
+# (scaling out would need Redis presence + sticky sessions).
+replicas: 1
+service:
+  type: ClusterIP
+  port: 2567
+ingress:
+  enabled: true
+  className: traefik
+  host: gunner2.eugenebox.uk
+  annotations: {}
+  # tls:
+  #   - secretName: gunner2-tls
+  #     hosts:
+  #       - gunner2.eugenebox.uk
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: "1"
+    memory: 512Mi

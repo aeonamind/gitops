@@ -1,0 +1,6 @@
+apiVersion: v2
+name: gunner2
+description: Gunner 2 — Đồng Đội Báo Thủ (multiplayer web game, Colyseus + Phaser)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
