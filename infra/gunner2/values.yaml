@@ -1,7 +1,7 @@
 # Image built by CI (see gunner2 repo), tag bumped automatically on push to main.
 image:
   repository: aeonamind/gunner2
-  tag: 0aec1b05cf269c5f65d9af40b27d4088d99ff8b1
+  tag: a1c0749812494619f7204aba867d610462838a5f
   pullPolicy: IfNotPresent
   # Uses the namespace-wide dockerhub-secret for image pulls.
   pullSecrets:
